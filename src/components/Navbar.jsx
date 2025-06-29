@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import Login_btn from "./Login_btn";
+import Admin_btn from './Admin_btn'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +38,10 @@ const Navbar = () => {
               user ? (
                 <Logout/>
               ): (
-                <Link to="/user/login" className="bg-yellow-400 text-black px-3 py-1 rounded hover:bg-yellow-500">Login</Link>
+                <>
+                <Link to="/user/login" ><Admin_btn/></Link>
+                <Link to="/user/login" ><Login_btn/></Link>
+                </>
            
               )
             }
