@@ -2,6 +2,7 @@ import { collectionGroup, getDocs, updateDoc } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { db } from '../../firebase';
+import Loader from "../Loader";
 
 function ViewApplicationCards() {
   const [applications, setApplication] = useState([]);
@@ -45,7 +46,7 @@ function ViewApplicationCards() {
       </h2>
 
       {loading ? (
-        <p className="text-center text-gray-600 text-lg">Loading applications...</p>
+        <Loader/>
       ) : applications.length === 0 ? (
         <p className="text-center text-gray-600 text-lg">No applications found.</p>
       ) : (

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Poppins:wght@200;500&display=swap');
 @theme {
-  --color-primary: #bed1fa;
+  --color-primary: #95b4f5;
   --color-background: #fff;
 }
 .poppins-extralight {

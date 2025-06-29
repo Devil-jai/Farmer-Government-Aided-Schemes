@@ -19,6 +19,7 @@ import UserDetails from "./components/Admin/UserDetails";
 import Navbar from "./components/Navbar";
 import ProtectedUserRoute from "./components/ProtectedUserRoute";
 import ViewApplicationCards from "./components/Admin/ViewApplicationCards";
+import Footer from "./components/Footer";
 
 function AppContent() {
   const location = useLocation()
@@ -87,6 +88,8 @@ function AppContent() {
         </Routes>
    
       <Toaster />
+
+      {/* {!hideHeaderFooter && <Footer/>} */}
     </>
   );
 } 
