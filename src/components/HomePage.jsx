@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from '../components/Navbar'; // adjust path as needed
 import bgImage from '../components/assets/homePage_img.jpg'; // background image
 import { Link } from 'react-router-dom';
+import AboutUs_btn from './buttons/AboutUS_btn';
 
 const HomePage = () => {
   return (
@@ -24,18 +25,11 @@ const HomePage = () => {
           Empowering farmers with access to schemes and crop knowledge. Apply, track, and grow better.
         </p>
  <div className="flex flex-wrap justify-center gap-4">
-          <Link
-            to="/login"
-            className="bg-green-600 hover:bg-green-700 text-white py-2 px-6 rounded-xl text-sm sm:text-base font-semibold shadow"
-          >
-            Admin
-          </Link>
+          
         
           <Link
-            to="/user/login"
-            className="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-xl text-sm sm:text-base font-semibold shadow"
-          >
-            User
+            to="/aboutUs">
+            <AboutUs_btn/>
           </Link>
         </div>
        

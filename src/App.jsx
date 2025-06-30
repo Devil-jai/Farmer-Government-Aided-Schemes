@@ -20,6 +20,7 @@ import Navbar from "./components/Navbar";
 import ProtectedUserRoute from "./components/ProtectedUserRoute";
 import ViewApplicationCards from "./components/Admin/ViewApplicationCards";
 import Footer from "./components/Footer";
+import AboutUs from "./components/AboutUs";
 
 function AppContent() {
   const location = useLocation()
@@ -31,6 +32,7 @@ function AppContent() {
         
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/v" element={<ViewApplicationCards />} />
           <Route

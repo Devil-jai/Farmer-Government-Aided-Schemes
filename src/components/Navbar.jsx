@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logout from "./Logout";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import Login_btn from "./Login_btn";
-import Admin_btn from './Admin_btn'
+import Login_btn from "./buttons/Login_btn";
+import Admin_btn from './buttons/Admin_btn'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,11 +26,11 @@ const Navbar = () => {
           <div className="text-2xl font-bold">Agro-Web-App</div>
 
           <div className="hidden md:flex space-x-6">
-            <Link to="/" className="hover:text-primary">Home</Link>
-            <Link to="/user/viewcropdetails" className="hover:text-primary">Crop Info</Link>
-            <Link to="/user/viewgovernmentschemes" className="hover:text-primary">Govt Schemes</Link>
+            <Link to="/" className="hover:text-green-600">Home</Link>
+            <Link to="/user/viewcropdetails" className="hover:text-green-600">Crop Info</Link>
+            <Link to="/user/viewgovernmentschemes" className="hover:text-green-600">Govt Schemes</Link>
           
-            <Link to="/user/viewapplicationstatus" className="hover:text-primary">Status</Link>
+            <Link to="/user/viewapplicationstatus" className="hover:text-green-600">Status</Link>
           </div>
 
           <div className="hidden md:flex space-x-4">
@@ -39,7 +39,7 @@ const Navbar = () => {
                 <Logout/>
               ): (
                 <>
-                <Link to="/user/login" ><Admin_btn/></Link>
+                <Link to="/login" ><Admin_btn/></Link>
                 <Link to="/user/login" ><Login_btn/></Link>
                 </>
            
@@ -62,14 +62,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden px-4 pb-4 space-y-2">
-          <Link to="/" className="block">Home</Link>
-          <Link to="/crop-info" className="block">Crop Info</Link>
-          <Link to="/schemes" className="block">Govt Schemes</Link>
-          <Link to="/apply" className="block">Apply</Link>
-          <Link to="/status" className="block">Status</Link>
+        <div className="md:hidden px-4 pb-4 space-y-2 text-green-600">
+          <Link to="/" className="block  ">Home</Link>
+          <Link to="/user/viewcropdetails" className="block">Crop Info</Link>
+          <Link to="/user/viewgovernmentschemes" className="block">Govt Schemes</Link>
+          <Link to="/user/viewapplicationstatus" className="block">Status</Link>
           <Link to="/login" className="block">Login</Link>
-          <Link to="/register" className="block">Register</Link>
+         
         </div>
       )}
     </nav>
