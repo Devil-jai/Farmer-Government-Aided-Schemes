@@ -60,7 +60,7 @@ function ApproveApplications() {
     }`}
   />
   <div className="absolute top-0 left-0 w-full min-h-screen z-10 pt-16 pb-10 px-4" style={{ backgroundColor: "rgba(0, 0, 0, 0.6)" }}>
-      <h2 className="font-bold text-center lg:text-3xl text-2xl max-[600px]:text-xl max-[400px]:text-[16px] 2xl:text-5xl xl:text-4xl  mb-12 mt-16 text-white tracking-wide drop-shadow">
+      <h2 className="font-bold text-center lg:text-3xl sm:text-2xl text-2xl  max-[405px]:text-[18px] 2xl:text-5xl xl:text-4xl  mb-12 mt-16 text-white tracking-wide drop-shadow">
         Approve Scheme Applications
       </h2>
 
