@@ -18,7 +18,6 @@ import UserDashboard from "./components/User/UserDashboard";
 import UserDetails from "./components/Admin/UserDetails";
 import Navbar from "./components/Navbar";
 import ProtectedUserRoute from "./components/ProtectedUserRoute";
-import ViewApplicationCards from "./components/Admin/ViewApplicationCards";
 import Footer from "./components/Footer";
 import AboutUs from "./components/AboutUs";
 
@@ -34,7 +33,7 @@ function AppContent() {
           <Route path="/" element={<HomePage />} />
           <Route path="/aboutUs" element={<AboutUs />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/v" element={<ViewApplicationCards />} />
+          
           <Route
             path="/admin"
             element={

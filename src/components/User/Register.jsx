@@ -68,7 +68,7 @@ function Register() {
                     First Name
                   </label>
                   <input
-                    {...register("firstName", { require: true })}
+                    {...register("firstName", { required: true })}
                     placeholder="First Name"
                     className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3 "
                   />
@@ -84,7 +84,7 @@ function Register() {
                     Last Name
                   </label>
                   <input
-                    {...register("lastName", { require: true })}
+                    {...register("lastName", { required: true })}
                     placeholder="Last Name"
                     className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3"
                   />
@@ -100,17 +100,19 @@ function Register() {
                 <label className="mb-1 xl:text-[16px] lg:text-[14px] md:text-[12px] min-[576px]:text-[16px]  min-[350px]:text-[14px] text-[12px]">
                   Email address
                 </label>
-                <input
-                  type="email"
-                  {...register("email", { required: true })}
-                  placeholder="Enter your email"
-                  className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3"
-                />
-                {errors.email && (
-                  <p className="text-red-500 text-sm  mt-2">
-                    Email is required
-                  </p>
-                )}
+                  <input
+                type="email"
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: 'Invalid email format',
+                  },
+                })}
+                placeholder="Enter your email"
+                className="py-1 border rounded-xl border-gray-300 px-3"
+              />
+              {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email.message}</p>}
               </div>
 
               <div className=" flex flex-col">
@@ -136,16 +138,20 @@ function Register() {
                     Phone
                   </label>
                   <input
-                    type="number"
-                    {...register("phone", { required: true })}
-                    className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3"
-                    placeholder="Phone Number"
-                  />
-                  {errors.phone && (
-                    <p className="text-red-500 text-sm mt-2">
-                      Email is required
-                    </p>
-                  )}
+  type="tel"
+  {...register("phone", {
+    required: "Phone number is required",
+    pattern: {
+      value: /^[6-9]\d{9}$/,
+      message: "Enter a valid 10-digit Indian phone number",
+    },
+  })}
+  className="py-1 border rounded-xl border-gray-300 px-3"
+  placeholder="Phone Number"
+/>
+{errors.phone && (
+  <p className="text-red-500 text-sm mt-2">{errors.phone.message}</p>
+)}
                 </div>
                 <div className=" flex flex-col w-3/7">
                   <label className="mb-1 xl:text-[16px] lg:text-[14px] md:text-[12px] min-[576px]:text-[16px]  min-[350px]:text-[14px] text-[12px]">
@@ -170,17 +176,26 @@ function Register() {
                   <label className="mb-1 xl:text-[16px] lg:text-[14px] md:text-[12px] min-[576px]:text-[16px]  min-[350px]:text-[14px] text-[12px]">
                     Password
                   </label>
-                  <input
-                    type="password"
-                    {...register("password", { required: true })}
-                    placeholder="Enter your password"
-                    className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3"
-                  />
-                  {errors.password && (
-                    <p className="text-red-500 text-sm mt-2">
-                      Password is required
-                    </p>
-                  )}
+                       <input
+                type="password"
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Password must not exceed 20 characters',
+                  },
+                 
+                })}
+                placeholder="Enter your password"
+                className="py-1 border rounded-xl border-gray-300 px-3"
+              />
+              {errors.password && (
+                <p className="text-red-500 text-sm mt-2">{errors.password.message}</p>
+              )}
                 </div>
 
                 <div className=" flex flex-col w-3/7">
@@ -197,7 +212,7 @@ function Register() {
                     })}
                     placeholder="Confirm Password"
                   />
-                  {errors.confirmPassword && <p>Passwords do not match</p>}
+                  {errors.confirmPassword && <p className="text-red-500 text-sm mt-2">Passwords do not match</p>}
                 </div>
               </div>
 

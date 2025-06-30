@@ -61,31 +61,44 @@ function Login() {
               <label className="mb-1 xl:text-[16px] lg:text-[14px] md:text-[12px] min-[576px]:text-[16px]  min-[350px]:text-[14px] text-[12px]">
                 Email address
               </label>
-              <input
+               <input
                 type="email"
-                {...register("email", { required: true })}
+                {...register('email', {
+                  required: 'Email is required',
+                  pattern: {
+                    value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                    message: 'Invalid email format',
+                  },
+                })}
                 placeholder="Enter your email"
-                className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3"
+                className="py-1 border rounded-xl border-gray-300 px-3"
               />
-              {errors.email && (
-                <p className="text-red-500 text-sm  mt-2">Email is required</p>
-              )}
+              {errors.email && <p className="text-red-500 text-sm mt-2">{errors.email.message}</p>}
             </div>
 
             <div className="flex flex-col">
               <label className="mb-1 xl:text-[16px] lg:text-[14px] md:text-[12px] min-[576px]:text-[16px]  min-[350px]:text-[14px] text-[12px]">
                 Password
               </label>
-              <input
+                  <input
                 type="password"
-                {...register("password", { required: true })}
+                {...register('password', {
+                  required: 'Password is required',
+                  minLength: {
+                    value: 6,
+                    message: 'Password must be at least 6 characters',
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: 'Password must not exceed 20 characters',
+                  },
+                 
+                })}
                 placeholder="Enter your password"
-                className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3"
+                className="py-1 border rounded-xl border-gray-300 px-3"
               />
               {errors.password && (
-                <p className="text-red-500 text-sm mt-2">
-                  Password is required
-                </p>
+                <p className="text-red-500 text-sm mt-2">{errors.password.message}</p>
               )}
             </div>
 

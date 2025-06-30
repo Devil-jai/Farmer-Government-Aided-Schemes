@@ -1,14 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logout from "./Logout";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 import Login_btn from "./buttons/Login_btn";
 import Admin_btn from './buttons/Admin_btn';
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [user, setUser] = useState(null);
+   const navigate = useNavigate();
 
+    const handleLogout = () => {
+        const auth = getAuth()
+        signOut(auth).then(()=>{
+            toast.success("Logged out successfully")
+            navigate('/')
+        }).catch((error)=>{
+            toast.error('Failde to logout')
+        })
+        setIsOpen(false)
+
+    }
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (u) => {
@@ -64,8 +77,14 @@ const Navbar = () => {
           <Link to="/user/viewgovernmentschemes" className="block" onClick={() => setIsOpen(false)}>Govt Schemes</Link>
           <Link to="/user/viewapplicationstatus" className="block" onClick={() => setIsOpen(false)}>Status</Link>
           <Link to="/aboutUs" className="block" onClick={() => setIsOpen(false)}>About</Link>
-          <Link to="/login" className="block" onClick={() => setIsOpen(false)}>Admin</Link>
-          <Link to="/user/login" className="block" onClick={() => setIsOpen(false)}>Login</Link>
+         {user ? (
+              <button onClick={handleLogout} className="text-red-700 cursor-pointer">Logout</button>
+            ) : (
+              <>
+                <Link to="/login" className="block" onClick={() => setIsOpen(false)}>Admin</Link>
+                <Link to="/user/login" className="block" onClick={() => setIsOpen(false)}>Login</Link>
+              </>
+            )}
         </div>
       )}
     </nav>

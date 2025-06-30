@@ -1,6 +1,8 @@
 import {
   addDoc,
   collection,
+  doc,
+  getDoc,
   getDocs,
   Timestamp,
 } from "firebase/firestore";
@@ -23,6 +25,7 @@ function ViewGovernmentSchemes() {
   const [loading, setLoading] = useState(true);
   const [selectedScheme, setSelectedScheme] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [applicantName, setApplicantName] = useState("");
   const {
     register,
     handleSubmit,
@@ -45,6 +48,24 @@ function ViewGovernmentSchemes() {
     }
   };
 
+    const fetchUserName = async () => {
+    try {
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (!user) return;
+
+      const userDoc = await getDoc(doc(db, "users", user.uid));
+      if (userDoc.exists()) {
+        const data = userDoc.data();
+        console.log(data);
+        setApplicantName(`${data.firstName} ${data.lastName}`);
+      }
+    } catch (error) {
+      console.error("Error fetching user data:", error);
+    }
+  };
+
+
   const onSubmit = async (data) => {
     try {
       const auth = getAuth();
@@ -56,6 +77,7 @@ function ViewGovernmentSchemes() {
       }
       await addDoc(collection(db, "users", user.uid, "schemeApplications"), {
         ...data,
+        applicantName: applicantName,
         schemeId: selectedScheme.id,
         schemeName: selectedScheme.schemeName,
         createdAt: Timestamp.now(),
@@ -71,6 +93,7 @@ function ViewGovernmentSchemes() {
 
   useEffect(() => {
     fetchScheme();
+    fetchUserName();
   }, []);
 
   if (loading)
@@ -170,16 +193,13 @@ function ViewGovernmentSchemes() {
         </div>
 
         <div className="flex flex-col">
-          <label className="mb-1 text-sm">Your Name</label>
-          <input
-            {...register("applicantName", { required: "Name is required" })}
-            className="py-1 px-3 border rounded-xl"
-            placeholder="e.g., Raj Kumar"
-          />
-          {errors.applicantName && (
-            <p className="text-red-500 text-sm mt-1">{errors.applicantName.message}</p>
-          )}
-        </div>
+                  <label className="mb-1 text-sm">Your Name</label>
+                  <input
+                    value={applicantName}
+                    disabled
+                    className="py-1 px-3 border rounded-xl bg-gray-100 text-gray-600 cursor-not-allowed"
+                  />
+                </div>
 
         <div className="flex flex-col">
           <label className="mb-1 text-sm">Aadhaar Number</label>
