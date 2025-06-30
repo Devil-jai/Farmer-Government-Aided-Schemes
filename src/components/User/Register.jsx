@@ -203,7 +203,7 @@ function Register() {
                     Confirm Password
                   </label>
                   <input
-                    type="number"
+                    type="password"
                     className="py-1 border rounded-xl border-gray-300 placeholder:xl:text-[16px] placeholder:lg:text-[14px] placeholder:md:text-[12px] placeholder:min-[576px]:text-[16px]  placeholder:min-[350px]:text-[14px] placeholder:text-[12px] px-3"
                     {...register("confirmPassword", {
                       required: true,
