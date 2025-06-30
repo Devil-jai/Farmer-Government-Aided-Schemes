@@ -63,8 +63,8 @@ const Navbar = () => {
           <Link to="/user/viewcropdetails" className="block" onClick={() => setIsOpen(false)}>Crop Info</Link>
           <Link to="/user/viewgovernmentschemes" className="block" onClick={() => setIsOpen(false)}>Govt Schemes</Link>
           <Link to="/user/viewapplicationstatus" className="block" onClick={() => setIsOpen(false)}>Status</Link>
-          <Link to="/user/viewapplicationstatus" className="block" onClick={() => setIsOpen(false)}>Status</Link>
           <Link to="/aboutUs" className="block" onClick={() => setIsOpen(false)}>About</Link>
+          <Link to="/login" className="block" onClick={() => setIsOpen(false)}>Admin</Link>
           <Link to="/user/login" className="block" onClick={() => setIsOpen(false)}>Login</Link>
         </div>
       )}
